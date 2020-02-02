@@ -73,6 +73,10 @@ module.exports = function readCommandLineArgs() {
       defaultValue: mainJs.previewPath || 'storybook-prebuilt/web-components.js',
       description: 'Import path of a prebuilt preview file',
     },
+    {
+      name: 'experimental-md-docs',
+      type: Boolean,
+    },
   ];
 
   const args = commandLineArgs(optionDefinitions, { partial: true });
@@ -84,6 +88,7 @@ module.exports = function readCommandLineArgs() {
     rollup: mainJs.rollup,
     managerPath: args['manager-path'],
     previewPath: args['preview-path'],
+    experimentalMdDocs: args['experimental-md-docs'],
   };
 
   if ('config' in args) {

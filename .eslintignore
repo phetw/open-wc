@@ -10,3 +10,4 @@ stats.html
 /packages/karma-esm/src/esm-context.html
 /packages/demoing-storybook/storybook-static/**/*
 /packages/**/demo/**/*
+/packages/mdjs/src/commonmark/**/*

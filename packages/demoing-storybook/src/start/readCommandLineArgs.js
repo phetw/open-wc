@@ -61,6 +61,10 @@ module.exports = function readCommandLineArgs() {
       defaultValue: mainJs.previewPath || 'storybook-prebuilt/web-components.js',
       description: 'Import path of a prebuilt preview file',
     },
+    {
+      name: 'experimental-md-docs',
+      type: Boolean,
+    },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
 
@@ -104,6 +108,7 @@ module.exports = function readCommandLineArgs() {
     stories: storybookArgs.stories,
     managerPath: storybookArgs['manager-path'],
     previewPath: storybookArgs['preview-path'],
+    experimentalMdDocs: storybookArgs['experimental-md-docs'],
     // some args may be overwritten, as es-dev-server reads start-storybook.config.js
     ...esDevServerConfig,
     ...mainJs.esDevServer,

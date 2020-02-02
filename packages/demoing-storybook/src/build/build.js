@@ -1,15 +1,8 @@
-const { rollup } = require('rollup');
-const { createCompatibilityConfig } = require('@open-wc/building-rollup');
-const { DEFAULT_EXTENSIONS } = require('@babel/core');
-const indexHTML = require('rollup-plugin-index-html');
 const fs = require('fs-extra');
 const path = require('path');
-const MagicString = require('magic-string');
-const createMdxToJsTransformer = require('../shared/createMdxToJsTransformer');
-const { createOrderedExports } = require('../shared/createOrderedExports');
 const createAssets = require('../shared/getAssets');
-const listFiles = require('../shared/listFiles');
 const toBrowserPath = require('../shared/toBrowserPath');
+<<<<<<< HEAD
 const { injectStories } = require('../shared/injectStories');
 
 const injectOrderedExportsPlugin = storyFiles => ({
@@ -206,6 +199,10 @@ async function buildPreview({
   await rollupBuild(configs[0]);
   await rollupBuild(configs[1]);
 }
+=======
+const { buildManager } = require('./rollup/buildManager');
+const { buildPreview } = require('./rollup/buildPreview');
+>>>>>>> chore: initial implementation
 
 module.exports = async function build({
   storybookConfigDir,
@@ -214,6 +211,7 @@ module.exports = async function build({
   previewPath,
   storiesPatterns,
   rollupConfigDecorator,
+  experimentalMdDocs,
 }) {
   const managerPathRelative = `/${path.relative(process.cwd(), require.resolve(managerPath))}`;
   const managerImport = toBrowserPath(managerPathRelative);
@@ -233,13 +231,14 @@ module.exports = async function build({
   await fs.remove(outputDir);
   await fs.mkdirp(outputDir);
 
-  await buildManager({ outputDir, assets });
+  await buildManager({ outputDir, indexHTML: assets.indexHTML });
   await buildPreview({
     outputDir,
-    assets,
+    iframeHTML: assets.iframeHTML,
     storiesPatterns,
     previewImport,
     previewConfigImport,
+    experimentalMdDocs,
     rollupConfigDecorator,
   });
 };
