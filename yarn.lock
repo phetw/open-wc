@@ -2940,6 +2940,20 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
+"@mdjs/mdjs-preview@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@mdjs/mdjs-preview/-/mdjs-preview-0.0.1.tgz#a478ed4f0223302b4c710bb9193536342558a044"
+  integrity sha512-KCLSeM+vz/tZM5GLYM9khqE/AFgn6WC/GF8Aw72NodFWzSx4CvqojYHJ75vkKFwEDnD81AJ7zweAs3bTUAQrrg==
+  dependencies:
+    lit-element "^2.2.1"
+
+"@mdjs/mdjs-story@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@mdjs/mdjs-story/-/mdjs-story-0.0.1.tgz#aad15762dd881a532756fbff774113e9964dda88"
+  integrity sha512-04Nx9MQeC97X/gi4x4yPapJNxLggdXYnO0xAkXbg13cCC4dzb0CdnSslNTXSrVgDBHxj1C2EsfEiOUS5SvqqyQ==
+  dependencies:
+    lit-element "^2.2.1"
+
 "@mdx-js/loader@^1.5.1":
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-1.5.3.tgz#0bfec6528a17b618763d2d86a5e0c9d351ac19be"
@@ -4432,13 +4446,6 @@
     stylus-loader "^3.0.2"
     vuepress-plugin-container "^2.0.2"
     vuepress-plugin-smooth-scroll "^0.0.3"
-
-"@wcd/dakmor.mdjs-story@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@wcd/dakmor.mdjs-story/-/dakmor.mdjs-story-0.1.0.tgz#e56673ad7020823258e36d467f682150a5edb532"
-  integrity sha512-Ldb4rpV+QolRmD2HtukkZMpAvOs3VavmYJnLt8CdvDyiPOdEh7K4iI+olHdjINMmXgu03n6WScs7xIUhk8HLcQ==
-  dependencies:
-    lit-element "^2.2.1"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
@@ -8924,9 +8931,9 @@ es-get-iterator@^1.0.1:
     isarray "^2.0.5"
 
 es-module-lexer@^0.3.13:
-  version "0.3.13"
-  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.3.13.tgz#b7f986efeb55a5d3ce0f3e482409ff43c462d398"
-  integrity sha512-8VCx4z2cIGFKx715cOvicAieDBjf2B6EYq58yzctIkKnXpKGEsd+qTf+LU1KuTkosWkWH6h1iDV7LWoKmdkaOQ==
+  version "0.3.17"
+  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.3.17.tgz#a248dec2870934d9054420fead19db095ea21537"
+  integrity sha512-nwvMtzyEB6FhlyXBlV+BW2By3Vn2sUvlQBYP4LvdK8YpdbFQUOiBoeuB7/ip1+EbjmgNydkJ8+dIlyO09VP9BA==
 
 es-module-shims@^0.4.6:
   version "0.4.6"

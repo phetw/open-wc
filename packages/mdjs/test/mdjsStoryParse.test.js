@@ -28,8 +28,8 @@ describe('mdjsStoryParse', () => {
       '<h2>Intro</h2>',
       '<pre><code class="language-js">const foo = 1;',
       '</code></pre>',
-      '<mdjs-story name="fooStory" id="mdjs-story-0"></mdjs-story>',
-      '<mdjs-preview name="fooPreviewStory" id="mdjs-story-1"></mdjs-preview>',
+      '<mdjs-story name="fooStory" id="mdjs-story-fooStory"></mdjs-story>',
+      '<mdjs-preview name="fooPreviewStory" id="mdjs-story-fooPreviewStory"></mdjs-preview>',
       '',
     ].join('\n');
 

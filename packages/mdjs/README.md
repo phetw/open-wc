@@ -75,7 +75,7 @@ export const JsStory = () => {
 Will become a live demo wrapped in a container with a show code button.
 
 ````md
-```js preview story
+```js preview-story
 export const JsStory = () =>
   html`
     <demo-wc-card>JS Story</demo-wc-card>
@@ -151,7 +151,7 @@ Pass in multiple markdown documents and you get back all the jsCode and rendered
 ```js
 const { mdjsProcess } = require('@open-wc/mdjs');
 
-const data = await mdjsProcess([markdownStringOne, markdownStringTwo]);
+const data = await mdjsProcess(markdownString);
 console.log(data);
 /*
 { 
@@ -159,10 +159,7 @@ console.log(data);
     import '@mdjs/mdjs-story/mdjs-story.js';
     ...
   ",
-  allHtml: [
-    '<h1>Markdown One</h1>', 
-    '<h2>Markdown Two</h2>'
-  ]
+  html: '<h1>Markdown One</h1>', 
 }
 */
 ```

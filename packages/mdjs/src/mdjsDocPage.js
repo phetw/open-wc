@@ -6,7 +6,7 @@ const { mdjsProcess } = require('./mdjsProcess.js');
  * @returns {Promise<string>}
  */
 async function mdjsDocPage(body) {
-  const data = await mdjsProcess([body]);
+  const data = await mdjsProcess(body);
   return `
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/node_modules/github-markdown-css/github-markdown.css">
@@ -32,7 +32,7 @@ async function mdjsDocPage(body) {
       ${data.jsCode}
     </script>
     <div class="markdown-body">
-      ${data.allHtml[0]}
+      ${data.html}
     </div>
   `;
 }

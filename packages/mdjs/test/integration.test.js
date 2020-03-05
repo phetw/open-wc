@@ -42,8 +42,8 @@ describe('Integration', () => {
       '<h2 id="intro-1"><a aria-hidden="true" href="#intro-1"><span class="icon icon-link"></span></a>Intro</h2>',
       '<pre><code class="language-js">const foo = 1;',
       '</code></pre>',
-      '<mdjs-story name="fooStory" id="mdjs-story-0"></mdjs-story>',
-      '<mdjs-preview name="fooPreviewStory" id="mdjs-story-1"></mdjs-preview>',
+      '<mdjs-story name="fooStory" id="mdjs-story-fooStory"></mdjs-story>',
+      '<mdjs-preview name="fooPreviewStory" id="mdjs-story-fooPreviewStory"></mdjs-preview>',
     ];
 
     const parser = unified()

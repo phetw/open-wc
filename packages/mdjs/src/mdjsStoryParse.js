@@ -1,5 +1,5 @@
 /** @typedef {import('./types').Story} Story */
-/** @typedef {(name: string, i: number) => string} TagFunction */
+/** @typedef {(name: string) => string} TagFunction */
 /** @typedef {import('unist').Node} UnistNode */
 
 const visit = require('unist-util-visit');
@@ -16,17 +16,18 @@ function extractStoryData(code) {
   return { key, name, code };
 }
 
-/** @type {TagFunction} */
-function defaultStoryTag(name, i) {
-  return `<mdjs-story name="${name}" id="mdjs-story-${i}"></mdjs-story>`;
+/**
+ * @param {string} name
+ */
+function defaultStoryTag(name) {
+  return `<mdjs-story name="${name}" id="mdjs-story-${name}"></mdjs-story>`;
 }
 
 /**
  * @param {string} name
- * @param {number} i
  */
-function defaultPreviewStoryTag(name, i) {
-  return `<mdjs-preview name="${name}" id="mdjs-story-${i}"></mdjs-preview>`;
+function defaultPreviewStoryTag(name) {
+  return `<mdjs-preview name="${name}" id="mdjs-story-${name}"></mdjs-preview>`;
 }
 
 /**
@@ -38,11 +39,9 @@ function defaultPreviewStoryTag(name, i) {
 function mdjsStoryParse({
   storyTag = defaultStoryTag,
   previewStoryTag = defaultPreviewStoryTag,
-  counter = 0,
 } = {}) {
   /** @type {Story[]} */
   const stories = [];
-  // const counter = 10;
 
   return async (tree, file) => {
     // unifiedjs expects node changes to be made on the given node...
@@ -52,16 +51,14 @@ function mdjsStoryParse({
       if (node.lang === 'js' && node.meta === 'story') {
         const storyData = extractStoryData(node.value);
         node.type = 'html';
-        node.value = storyTag(storyData.name, counter);
+        node.value = storyTag(storyData.name);
         stories.push(storyData);
-        counter += 1;
       }
       if (node.lang === 'js' && node.meta === 'preview-story') {
         const storyData = extractStoryData(node.value);
         node.type = 'html';
-        node.value = previewStoryTag(storyData.name, counter);
+        node.value = previewStoryTag(storyData.name);
         stories.push(storyData);
-        counter += 1;
       }
     });
     // we can only return/modify the tree but stories should not be part of the tree

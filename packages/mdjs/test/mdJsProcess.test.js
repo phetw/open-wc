@@ -27,66 +27,26 @@ describe('mdjsProcess', () => {
       '<p>Intro</p>',
       '<pre><code class="language-js">const foo = 1;',
       '</code></pre>',
-      '<mdjs-story name="fooStory" id="mdjs-story-0"></mdjs-story>',
-      '<mdjs-preview name="fooPreviewStory" id="mdjs-story-1"></mdjs-preview>',
+      '<mdjs-story name="fooStory" id="mdjs-story-fooStory"></mdjs-story>',
+      '<mdjs-preview name="fooPreviewStory" id="mdjs-story-fooPreviewStory"></mdjs-preview>',
     ].join('\n');
     const expectedJsCode = [
-      "import '@wcd/dakmor.mdjs-story/dist/mdjs-story.js';",
+      "import '@mdjs/mdjs-story/mdjs-story.js';",
+      "import '@mdjs/mdjs-preview/mdjs-preview.js';",
       "import { html } from 'lit-html';",
       'const bar = 2;',
       'export const fooStory = () => {}',
       'export const fooPreviewStory = () => {}',
-      'const stories = [fooStory, fooPreviewStory];',
-      'stories.forEach((story, i) => {',
-      "  document.getElementById('mdjs-story-' + i).story = story;",
-      '});',
+      `const stories = [{ key: 'fooStory', story: fooStory, code: fooStory }, { key: 'fooPreviewStory', story: fooPreviewStory, code: fooPreviewStory }];`,
+      'for (const story of stories) {',
+      "  const storyEl = document.getElementById('mdjs-story-' + story.key);",
+      '  storyEl.story = story.story;',
+      '  storyEl.code = story.code;',
+      '};',
     ].join('\n');
 
-    const result = await mdjsProcess([input]);
-    expect(result.allHtml.length).to.equal(1);
-    expect(result.allHtml[0]).to.equal(expected);
-    expect(result.jsCode).to.equal(expectedJsCode);
-  });
-
-  it('can work with multiple md inputs', async () => {
-    const input1 = [
-      // prettier don't wrap
-      'I am one',
-      '```js story',
-      'export const fooStory = () => {}',
-      '```',
-    ].join('\n');
-    const input2 = [
-      'Number two here',
-      '```js story',
-      'export const barStory = () => {}',
-      '```',
-    ].join('\n');
-
-    const expectedHtml1 = [
-      '<p>I am one</p>',
-      '<mdjs-story name="fooStory" id="mdjs-story-0"></mdjs-story>',
-    ].join('\n');
-    const expectedHtml2 = [
-      '<p>Number two here</p>',
-      '<mdjs-story name="barStory" id="mdjs-story-1"></mdjs-story>',
-    ].join('\n');
-
-    const expectedJsCode = [
-      "import '@wcd/dakmor.mdjs-story/dist/mdjs-story.js';",
-      "import { html } from 'lit-html';",
-      '',
-      '',
-      'export const fooStory = () => {}',
-      'export const barStory = () => {}',
-      'const stories = [fooStory, barStory];',
-      'stories.forEach((story, i) => {',
-      "  document.getElementById('mdjs-story-' + i).story = story;",
-      '});',
-    ].join('\n');
-
-    const result = await mdjsProcess([input1, input2]);
-    expect(result.allHtml).to.deep.equal([expectedHtml1, expectedHtml2]);
+    const result = await mdjsProcess(input);
+    expect(result.html).to.equal(expected);
     expect(result.jsCode).to.equal(expectedJsCode);
   });
 
